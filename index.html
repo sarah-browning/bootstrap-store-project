@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--
+  Create an interactive, online store that conforms to the following:
+ 
+  Design considerations:
+    ✔	Single-page web site (only 1 html file allowed)
+    ✔	Site must be responsive (requires bootstrap)
+    •	Research as to what informs your design (reference sites with explanation)
+    •	Wireframe for your layout(s)
+    ✔	Site design must include logo, responsive menu
+ 
+  Functional considerations:
+    •	The site must contain the following pages:
+        ✔ Home/Products
+        ✔ About
+        • Contact
+    •	When viewing pages, you must manage your divs through show/hide or swap in/swap out, not through use of external html pages
+    •	Home page must have:
+        ✔	a full-width slider at the top
+        ✔	a minimum of 2 rows of products, minimum of 3 products per row. No table is allowed for the display of your products
+        ✔	each product block must display a picture with the title, price, and button to "View"
+        •	when the "view" button is pressed, you will display the product information (larger picture, grid of small pictures, title,
+          description, price, add to cart button) in a modal.
+        •	When an image in the grid is selected, your site will use fancybox (or some similar plugin) to display the image.
+    •	Contact page must contain a form with:
+        • Email address
+        • Subject
+        • Message
+        • Submit button
+        • When the submit button is pressed, your site will use AJAX to send to a script that will retrieve the email address, subject, and message.
+        • If there are errors in your form (missing fields), you must display an error flag beside the offending field and display the error in a bootstrap alert.
+    •	Use bootstrap classes to style all elements (when appropriate) for a modern look and feel
+ -->
+
 <head>
 
   <meta charset="utf-8">
@@ -10,17 +43,17 @@
 
   <title>Dice, Dragons & Documents</title>
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.ico" />
+
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="css/styles.css" rel="stylesheet">
+  <!-- Fancybox 3 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="manifest" href="site.webmanifest">
+  <!-- Custom styles -->
+  <link href="css/styles.css" rel="stylesheet">
 
 </head>
 
@@ -29,7 +62,8 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="images/ddd_logo-sm.png" alt="logo"></a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="images/ddd_logo-sm.png"
+          alt="logo"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
         aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,7 +71,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#">Home/Products</a>
+            <a class="nav-link js-scroll-trigger" href="#products">Products</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
@@ -46,18 +80,24 @@
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
       </div>
     </div>
   </nav>
 
+  <!-- Carousel -->
   <header>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
+
         <!-- Slide One -->
         <div class="carousel-item active" style="background-image: url('images/dnd-hero.jpg')">
           <div class="carousel-caption d-none d-md-block">
@@ -66,13 +106,15 @@
             </p>
           </div>
         </div>
+
         <!-- Slide Two -->
         <div class="carousel-item" style="background-image: url('images/starfinder-hero.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h2 class="display-4">Starfinder has arrived!</h2>
-            <p class="lead">You can now get all your Starfinder content right here on DD&D.</p>
+            <h2 class="display-4">Starfinder is here!</h2>
+            <p class="lead">Now you can adventure throughout the stars.</p>
           </div>
         </div>
+
         <!-- Slide Three -->
         <div class="carousel-item" style="background-image: url('images/cthulhu-hero.jpg')">
           <div class="carousel-caption d-none d-md-block">
@@ -81,6 +123,7 @@
           </div>
         </div>
       </div>
+
       <!-- Carousel Controls -->
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -93,32 +136,47 @@
     </div>
   </header>
 
-  <!-- Product Grid -->
+  <!-- Product Page -->
   <section id="products" class="bg-light">
     <div class="container">
       <h3 class="h3">Best Sellers</h3>
       <div class="row">
-        <!-- Row 1 -->
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
-              <a href="#">
-                <img class="pic-1" src="images/dnd-phb.jpg">
-              </a>
+              <img class="pic-1" src="images/dnd-phb.jpg" alt="D&D 5E Player's Handbook">
             </div>
-            <div class="product-content">
-              <h3 class="title"><a href="#">D&D 5E Player's Handbook</a></h3>
+            <div class="product-content"><h3 class="title"><a href="#">D&D 5E Player's Handbook</a></h3>
               <div class="price">
                 $49.95
               </div>
-              <button type="button" class="btn btn-secondary">VIEW</button>
+              <a class="btn btn-secondary" data-fancybox="gallery" href="#dnd-phb" role="button">VIEW</a>
             </div>
+
+            <div id="dnd-phb" class="card w-50 h-75" style="display: none;">
+              <img class="card-img-top" src="images/dnd-phb.jpg" alt="D&D 5E Player's Handbook" style="height: 600px; width: auto; float: left; padding-right: 5rem;">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">D&D 5E Player's Handbook</h5>
+                <p class="card-text">The Player’s Handbook is the essential reference for every Dungeons & Dragons
+                  roleplayer. It contains rules for character creation and advancement, backgrounds and skills,
+                  exploration and combat, equipment, spells, and much more. Use this book to create exciting
+                  characters from among the most iconic D&D races and classes.</p>
+                <p>Dungeons & Dragons immerses you in a world of adventure. Explore ancient ruins and deadly dungeons.
+                  Battle monsters while searching for legendary treasures. Gain experience and power as you trek
+                  across uncharted lands with your companions.</p>
+                <p>The world needs heroes. Will you answer the call?</p>
+                <div class="d-flex align-self-end">
+                  <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
-              <a href="#">
+              <a data-fancybox="gallery" href="images/dnd-xanathar.jpg">
                 <img class="pic-1" src="images/dnd-xanathar.jpg">
               </a>
             </div>
@@ -232,28 +290,45 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> <!-- /.row -->
   </section>
 
+  <!-- About Page -->
   <section id="about">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>About this page</h2>
-          <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so
-            you can use it as a boilerplate or starting point for you own landing page designs! This template features:
-          </p>
-          <ul>
-            <li>Clickable nav links that smooth scroll to page sections</li>
-            <li>Responsive behavior when clicking nav links perfect for a one page website</li>
-            <li>Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar</li>
-            <li>Minimal custom CSS so you are free to explore your own unique design options</li>
-          </ul>
+          <h1>About Us</h1>
+          <p class="lead">Why hello and welcome to Dice, Dragons & Documents. We're a little fictional company created
+            in 2021 for Sarah Browning's Bootstrap Project. We specialize in RPG sourcebooks, supplements, and
+            accessories. Inspired by Sarah's love of TTRPGs and websites such as the DMsGuild, Roll20 Marketplace, and
+            Drive-ThruRPG, we hope you enjoy taking a look around. We ship our products from our imaginary warehouse in
+            New Glasgow, Nova Scotia to the rest of Canada with help from Sarah's three cats.</p>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel metus finibus, hendrerit
+            ligula a, tempor arcu. Vivamus ut quam a odio tincidunt tincidunt. Mauris maximus tellus ac eros imperdiet,
+            eget rhoncus mauris porttitor. Proin et tortor sit amet augue porta aliquam. Nullam aliquam tincidunt ante
+            vitae mattis. Praesent ultricies ac erat nec lobortis.</p>
+
+          <p>Integer maximus, eros ut hendrerit dignissim, turpis dui consectetur lorem, ut mollis nisi sem at turpis.
+            Suspendisse non ultricies tortor, quis dapibus diam. Nulla at aliquam eros, sed congue eros. Fusce vel
+            congue nisi, sed imperdiet nibh. Duis eget turpis tortor. Donec pellentesque euismod quam eu bibendum.
+            Aliquam orci purus, venenatis ut urna id, pellentesque fringilla dui. Maecenas suscipit ipsum quis nisi
+            dapibus ultrices.</p>
+
+          <p>Nullam tempus nibh sed imperdiet accumsan. Vestibulum orci libero, interdum at quam sed, porttitor placerat
+            neque. Ut eu sapien tellus. Morbi sed volutpat nulla, non volutpat dui. Donec convallis urna quis libero
+            aliquet, sit amet consequat eros molestie. Ut vitae dignissim ipsum. Nulla tincidunt nisl purus, ac suscipit
+            leo commodo a. Vivamus ut ligula vitae lorem condimentum elementum at a enim. Fusce sed vulputate lacus.
+            Mauris non ex bibendum, sagittis ex at, faucibus orci. Mauris ultrices mauris nec auctor pellentesque.
+            Phasellus id leo eu sem eleifend semper. Mauris volutpat porttitor arcu sit amet sollicitudin. Aliquam erat
+            volutpat.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Contact Page -->
   <section id="contact">
     <div class="container">
       <div class="row">
@@ -270,43 +345,18 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
+      <p class="m-0 text-center text-white">Copyright &copy; Dice Dragons & Documents 2021</p>
+    </div> <!-- /.container -->
   </footer>
-
-  <!-- Start Bootstrap Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-
-        <div class="modal-title">
-          <p class="display-4">Modal Title</p>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <div class="modal-body">
-          This is my modal body... add content here...
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!-- End Bootstrap Modal -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="js/jquery.easing.min.js"></script>
-
-  <!-- Custom JavaScript for this theme -->
   <script src="js/scrolling-nav.js"></script>
+  <script src="js/jquery.easing.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
 </body>
 
