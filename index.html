@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!--
+<head>
+
+  <meta charset="utf-8">
+
+  <!--
   Create an interactive, online store that conforms to the following:
  
   Design considerations:
@@ -12,31 +16,28 @@
     ✔	Site design must include logo, responsive menu
  
   Functional considerations:
-    •	The site must contain the following pages:
+    ✔	The site must contain the following pages:
         ✔ Home/Products
         ✔ About
-        • Contact
+        ✔ Contact
     •	When viewing pages, you must manage your divs through show/hide or swap in/swap out, not through use of external html pages
-    •	Home page must have:
+    ✔	Home page must have:
         ✔	a full-width slider at the top
         ✔	a minimum of 2 rows of products, minimum of 3 products per row. No table is allowed for the display of your products
         ✔	each product block must display a picture with the title, price, and button to "View"
-        •	when the "view" button is pressed, you will display the product information (larger picture, grid of small pictures, title,
+        ✔	when the "view" button is pressed, you will display the product information (larger picture, grid of small pictures, title,
           description, price, add to cart button) in a modal.
-        •	When an image in the grid is selected, your site will use fancybox (or some similar plugin) to display the image.
+        ✔	When an image in the grid is selected, your site will use fancybox (or some similar plugin) to display the image.
     •	Contact page must contain a form with:
-        • Email address
-        • Subject
-        • Message
-        • Submit button
+        ✔Email address
+        ✔ Subject
+        ✔ Message
+        ✔ Submit button
         • When the submit button is pressed, your site will use AJAX to send to a script that will retrieve the email address, subject, and message.
         • If there are errors in your form (missing fields), you must display an error flag beside the offending field and display the error in a bootstrap alert.
     •	Use bootstrap classes to style all elements (when appropriate) for a modern look and feel
  -->
 
-<head>
-
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Dice, Dragons, and Documents - An RPG bookstore created as a Bootstrap project">
   <meta name="author" content="Sarah Browning">
@@ -47,13 +48,15 @@
   <link rel="icon" type="image/png" href="images/favicon.ico" />
 
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
   <!-- Fancybox 3 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/thumbs.css" />
 
   <!-- Custom styles -->
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -71,13 +74,13 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#products">Products</a>
+            <a class="nav-link js-scroll-trigger" id="productPage" href="#products">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" id="aboutPage" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            <a class="nav-link js-scroll-trigger" id="contactPage" href="#contact">Contact</a>
           </li>
         </ul>
       </div>
@@ -86,11 +89,11 @@
 
   <!-- Carousel -->
   <header>
-    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+    <div id="carouselNavigation" class="carousel slide carousel-fade" data-ride="carousel">
       <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselNavigation" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselNavigation" data-slide-to="1"></li>
+        <li data-target="#carouselNavigation" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
 
@@ -121,11 +124,11 @@
       </div>
 
       <!-- Carousel Controls -->
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <a class="carousel-control-prev" href="#carouselNavigation" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <a class="carousel-control-next" href="#carouselNavigation" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
@@ -134,11 +137,14 @@
 
   <!-- Product Page -->
   <section id="products" class="bg-light">
-    <div class="container">
+    <div class="container products">
       <h3 class="h3">Best Sellers</h3>
+
+      <!--Grid Row-->
       <div class="row">
 
         <!-- Product 1 -->
+        <!--Grid Column-->
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
@@ -155,6 +161,7 @@
             </div>
 
             <!-- Product Details -->
+            <!--Grid Column-->
             <div id="dnd-phb" class="card col-md-6 col-sm-6 w-50 h-75 bg-light" style="display: none;">
               <img class="card-img-top float-left img-fluid" src="images/md-dnd-phb.jpg" alt="D&D 5E Player's Handbook">
               <div class="card-body">
@@ -169,6 +176,8 @@
                   across uncharted lands with your companions.</p>
                 <p><b><i>The world needs heroes. Will you answer the call?</i></b></p>
               </div>
+
+              <!--Grid Row-->
               <div class="row justify-content-around align-items-center mb-5">
                 <div class="card-price">
                   $49.95
@@ -180,7 +189,6 @@
         </div>
 
         <!-- Product 2 -->
-
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
@@ -197,6 +205,7 @@
             </div>
 
             <!-- Product Details -->
+            <!--Grid Column-->
             <div id="dnd-xanathar" class="card col-md-6 col-sm-6 w-50 h-75 bg-light" style="display: none;">
               <img class="card-img-top float-left img-fluid" src="images/md-dnd-xanathar.jpg"
                 alt="D&D 5E Xanathar's Guide to Everything">
@@ -222,6 +231,8 @@
                 </ul>
                 <p><b><i>Beauty and guile are in the eyes of the beholder!</i></b></p>
               </div>
+
+              <!--Grid Row-->
               <div class="row justify-content-around align-items-center mb-5">
                 <div class="card-price">
                   $49.95
@@ -233,6 +244,7 @@
         </div>
 
         <!-- Product 3 -->
+        <!--Grid Column-->
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
@@ -249,6 +261,7 @@
             </div>
 
             <!-- Product Details -->
+            <!--Grid Column-->
             <div id="dnd-tasha" class="card col-md-6 col-sm-6 w-50 h-75 bg-light" style="display: none;">
               <img class="card-img-top float-left img-fluid" src="images/md-dnd-tashas.jpg"
                 alt="D&D 5E Tasha's Cauldron of Everything">
@@ -285,6 +298,8 @@
                   player characters and monsters, magical tattoos, group patrons, and other tasty goodies.</p>
                 <p><b><i>What wonderful witchery is this?</i></b></p>
               </div>
+
+              <!--Grid Row-->
               <div class="row justify-content-around align-items-center mb-5">
                 <div class="card-price">
                   $49.95
@@ -297,6 +312,7 @@
 
 
         <!-- Product 4 -->
+        <!--Grid Column-->
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
@@ -332,6 +348,8 @@
                 <p><b><i>“We live on a placid island of ignorance in the midst of black seas of infinity, and it was not
                       meant that we should voyage far.” —H.P. Lovecraft</i></b></p>
               </div>
+
+              <!--Grid Row-->
               <div class="row justify-content-around align-items-center mb-5">
                 <div class="card-price">
                   $59.95
@@ -343,9 +361,11 @@
         </div>
       </div> <!-- /.row -->
 
+      <!--Grid Row-->
       <div class="row">
 
         <!-- Product 5 -->
+        <!--Grid Column-->
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
@@ -362,6 +382,7 @@
             </div>
 
             <!-- Product Details -->
+            <!--Grid Column-->
             <div id="starfinder-core" class="card col-md-6 col-sm-6 w-50 h-75 bg-light" style="display: none;">
               <img class="card-img-top float-left img-fluid" src="images/md-starfinder-core.jpg"
                 alt="Starfinder Core Rulebook">
@@ -396,6 +417,8 @@
                 </ul>
                 <p><b><i>Shoot for the Stars!</i></b></p>
               </div>
+
+              <!--Grid Row-->
               <div class="row justify-content-around align-items-center mb-5">
                 <div class="card-price">
                   $59.95
@@ -407,6 +430,7 @@
         </div>
 
         <!-- Product 6 -->
+        <!--Grid Column-->
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
@@ -423,6 +447,7 @@
             </div>
 
             <!-- Product Details -->
+            <!--Grid Column-->
             <div id="starfinder-pact" class="card col-md-6 col-sm-6 w-50 h-75 bg-light" style="display: none;">
               <img class="card-img-top float-left img-fluid" src="images/md-starfinder-pactworlds.jpg"
                 alt="Starfinder Pact Worlds">
@@ -442,14 +467,18 @@
                     settlements and adventure locations, a unique theme to customize characters from that world, and
                     more.</li>
                   <li>New playable alien races, from undead Eoxians to Castrovellian plant-people.</li>
-                  <li>New starships, from the living vessels of the Xenowardens to sinister Hellknight dreadnoughts.</li>
+                  <li>New starships, from the living vessels of the Xenowardens to sinister Hellknight dreadnoughts.
+                  </li>
                   <li>A codex of themed NPC stat blocks to help Game Masters create vivid encounters.</li>
-                  <li>New archetypes for every class, including the Star Knight, Skyfire Centurion, and Divine Champion.</li>
+                  <li>New archetypes for every class, including the Star Knight, Skyfire Centurion, and Divine Champion.
+                  </li>
                   <li>Tons of new weapons, armors, spells, feats, magic items, technological gadgets, and more to help
                     outfit your adventurers.</li>
                 </ul>
                 <p><b><i>The Pact Worlds await!</i></b></p>
               </div>
+
+              <!--Grid Row-->
               <div class="row justify-content-around align-items-center mb-5">
                 <div class="card-price">
                   $44.95
@@ -461,6 +490,7 @@
         </div>
 
         <!-- Product 7 -->
+        <!--Grid Column-->
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
@@ -477,22 +507,34 @@
             </div>
 
             <!-- Product Details -->
+            <!--Grid Column-->
             <div id="starfinder-alien1" class="card col-md-6 col-sm-6 w-50 h-75 bg-light" style="display: none;">
               <img class="card-img-top float-left img-fluid" src="images/md-starfinder-alienarchive.jpg"
                 alt="Starfinder Alien Archive">
               <div class="card-body">
                 <h5 class="card-title">Starfinder Alien Archive</h5>
-                <p class="card-text">Strange aliens both friendly and fearsome fill this tome of creatures designed for use with the Starfinder Roleplaying Game! From the gravity-manipulating frujais and planet-killing novaspawn to space goblins and security robots, the creatures in this codex will challenge adventurers no matter what strange worlds they're exploring. What's more, player rules for a host of creatures let players not just fight aliens, but be them!</p>
-		            <p>Inside Starfinder Alien Archive, you'll find the following:</p>
+                <p class="card-text">Strange aliens both friendly and fearsome fill this tome of creatures designed for
+                  use with the Starfinder Roleplaying Game! From the gravity-manipulating frujais and planet-killing
+                  novaspawn to space goblins and security robots, the creatures in this codex will challenge adventurers
+                  no matter what strange worlds they're exploring. What's more, player rules for a host of creatures let
+                  players not just fight aliens, but be them!</p>
+                <p>Inside Starfinder Alien Archive, you'll find the following:</p>
                 <ul>
-                  <li>Over 80 bizarre life-forms both classic and new, from the reptilian ikeshtis and energy-bodied hallajins to robotic anacites and supernatural entities from beyond the realms of mortals.</li>
-                  <li>Over 20 races with full player rules, letting you play everything from a winged dragonkin to a hyperevolved floating brain.</li>
-                  <li>New alien technology to help give your character an edge, including weapons, armor, magic items, and more.</li>
-                  <li>A robust NPC-creation system to let Game Masters build any aliens or creatures they can imagine.</li>
-                  <li>New rules for magical monster summoning, quick templates to modify creatures on the fly, and more!</li>
+                  <li>Over 80 bizarre life-forms both classic and new, from the reptilian ikeshtis and energy-bodied
+                    hallajins to robotic anacites and supernatural entities from beyond the realms of mortals.</li>
+                  <li>Over 20 races with full player rules, letting you play everything from a winged dragonkin to a
+                    hyperevolved floating brain.</li>
+                  <li>New alien technology to help give your character an edge, including weapons, armor, magic items,
+                    and more.</li>
+                  <li>A robust NPC-creation system to let Game Masters build any aliens or creatures they can imagine.
+                  </li>
+                  <li>New rules for magical monster summoning, quick templates to modify creatures on the fly, and more!
+                  </li>
                 </ul>
                 <p><b><i>Close Encounters</i></b></p>
               </div>
+
+              <!--Grid Row-->
               <div class="row justify-content-around align-items-center mb-5">
                 <div class="card-price">
                   $39.95
@@ -504,6 +546,7 @@
         </div>
 
         <!-- Product 8 -->
+        <!--Grid Column-->
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
@@ -520,6 +563,7 @@
             </div>
 
             <!-- Product Details -->
+            <!--Grid Column-->
             <div id="coc-keeper" class="card col-md-6 col-sm-6 w-50 h-75 bg-light" style="display: none;">
               <img class="card-img-top float-left img-fluid" src="images/md-coc-keeper.jpg"
                 alt="Call of Cthulhu 7E Keeper Rulebook">
@@ -545,6 +589,8 @@
                       now, some deep within the earth or beneath the sea.</i></b></p>
                 <p><b><i>When the stars are right they shall again walk the earth.</i></b></p>
               </div>
+
+              <!--Grid Row-->
               <div class="row justify-content-around align-items-center mb-5">
                 <div class="card-price">
                   $69.95
@@ -558,9 +604,13 @@
   </section>
 
   <!-- About Page -->
-  <section id="about">
-    <div class="container">
+  <section id="about" class="bg-light">
+    <div class="container about">
+
+      <!-- Grid Row -->
       <div class="row">
+
+        <!-- Grid Column -->
         <div class="col-lg-8 mx-auto">
           <h1>About Us</h1>
           <p class="lead">Why hello and welcome to Dice, Dragons & Documents. We're a little fictional company created
@@ -593,18 +643,90 @@
   </section>
 
   <!-- Contact Page -->
-  <section id="contact">
-    <div class="container">
+  <section id="contact" class="mb-4 bg-light">
+    <div class="container contact">
+      <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+      <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please don't hesitate to reach out to
+        one of our scribes by filling out the form below. We should be able to prepare and cast a Sending spell within
+        48 hours, we just may need a long rest first.</p>
+
+      <!-- Grid Row -->
       <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2>Contact us</h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor,
-            provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa
-            exercitationem, in, quo totam.</p>
+
+        <!-- Grid Column -->
+        <div class="col-md-9 mb-md-0 mb-5">
+          <form id="contact-form" name="contact-form" action="sendform.php" method="POST">
+
+            <!-- Grid Row -->
+            <div class="row">
+
+              <!-- Grid Column -->
+              <div class="col-md-6">
+                <div class="md-form mb-0">
+                  <input type="text" id="name" name="name" class="form-control">
+                  <label for="name" class="">Your name</label>
+                </div>
+              </div>
+
+              <!-- Grid Column -->
+              <div class="col-md-6">
+                <div class="md-form mb-0">
+                  <input type="text" id="email" name="email" class="form-control">
+                  <label for="email" class="">Your email</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grid Row -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="md-form mb-0">
+                  <input type="text" id="subject" name="subject" class="form-control">
+                  <label for="subject" class="">Subject</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grid Row -->
+            <div class="row">
+
+              <!-- Grid Column -->
+              <div class="col-md-12">
+
+                <div class="md-form">
+                  <textarea type="text" id="message" name="message" rows="2"
+                    class="form-control md-textarea"></textarea>
+                  <label for="message">Your message</label>
+                </div>
+
+              </div>
+            </div>
+          </form>
+
+          <div class="text-center text-md-left">
+            <a class="btn btn-secondary" onclick="validateForm();">Submit</a>
+          </div>
+          <div class="status"></div>
+        </div>
+
+        <!-- Grid Column -->
+        <div class="col-md-3 text-center">
+          <ul class="list-unstyled mb-0">
+            <li><i class="fas fa-address-book"></i>
+              <p>Dice Dragons & Documents<br />New Glasgow, NS, A5A 5A5, Canada</p>
+            </li>
+            <li><i class="fas fa-mobile-alt"></i>
+              <p>+1 (902) 555-5555</p>
+            </li>
+            <li><i class="fas fa-envelope-open-text"></i>
+              <p>scribes@ddd.ca</p>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
+  </section> <!-- /.contact -->
+
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
@@ -613,14 +735,118 @@
     </div> <!-- /.container -->
   </footer>
 
+  <!-- Failed to figure out how to get card data to show up in modal and didn't have time to redo cards which were already
+       working with Fancybox elements by the time I realized instructions specified to use a modal -->
+
+  <!-- Bootstrap Modal -->
+  <!-- <div class="modal fade modal-product" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="btn btn-danger close" data-dismiss="modal" aria-label="Close"></button>
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
   <!-- Bootstrap core JavaScript -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="js/scrolling-nav.js"></script>
-  <script src="js/jquery.easing.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script type="text/javascript" src="js/scrolling-nav.js"></script>
+  <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+  <script type="text/javascript" src="js/jquery.fancybox.min.js"></script>
+  <script type="text/javascript" src="js/thumbs.js"></script>
+
+  <!-- Custom JS -->
+  <script src="https://kit.fontawesome.com/434650e74a.js" crossorigin="anonymous"></script>
+
+  <!-- Div Swapping -->
+  <script type="text/javascript">
+    // When document is ready
+    $(function () {
+      //hide #about and #contact
+      $("#about").hide(),
+        $("#contact").hide(),
+
+        //when navbar about link is clicked
+        $("#aboutPage").click(function () {
+          //hide #products and #contact; show #about
+          $("#products").hide(),
+            $("#contact").hide(),
+            $("#about").show()
+        });
+
+      //when navbar contact link is clicked
+      $("#contactPage").click(function () {
+        //hide #products and #about; show #contact
+        $("#products").hide(),
+          $("#about").hide(),
+          $("#contact").show()
+      });
+
+      //when navbar product link is clicked
+      $("#productPage").click(function () {
+        //hide #about and #contact; show #products
+        $("#about").hide(),
+          $("#contact").hide(),
+          $("#products").show()
+      });
+
+      //when navbar logo is clicked
+      $(".navbar-brand").click(function () {
+        //hide #about and #contact; show #products
+        $("#about").hide(),
+          $("#contact").hide(),
+          $("#products").show()
+      });
+
+    });
+  </script>
+
+  <!-- Form Validation -->
+  <script type="text/javascript">
+    function validateForm() {
+      var name = document.getElementById('name').value;
+      if (name == "") {
+        document.querySelector('.status').innerHTML = "Name cannot be empty";
+        return false;
+      }
+      var email = document.getElementById('email').value;
+      if (email == "") {
+        document.querySelector('.status').innerHTML = "Email cannot be empty";
+        return false;
+      } else {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(email)) {
+          document.querySelector('.status').innerHTML = "Email format is invalid";
+          return false;
+        }
+      }
+      var subject = document.getElementById('subject').value;
+      if (subject == "") {
+        document.querySelector('.status').innerHTML = "Subject cannot be empty";
+        return false;
+      }
+      var message = document.getElementById('message').value;
+      if (message == "") {
+        document.querySelector('.status').innerHTML = "Message cannot be empty";
+        return false;
+      }
+      document.querySelector('.status').innerHTML = "Sending...";
+    }
+  </script>
 
 </body>
 

@@ -1,3 +1,4 @@
+/* Formatting Styles */
 header {
   padding-top: 155px;
 }
@@ -11,6 +12,10 @@ section {
 }
 
 .bg-dark {
+  background-color: #1F4949 !important;
+}
+
+.btn-primary {
   background-color: #1F4949 !important;
 }
 
@@ -32,6 +37,17 @@ section {
   font-size: 2em;
 }
 
+/* Fancybox Styles */
+
+.fancybox-button--fullscreen::before {
+	width: 15px;
+	height: 11px;
+	left: calc(50% - 7px);
+	top: calc(50% - 6px);
+	border: 2px solid;
+	background: none;
+}
+
 /* Carousel Styles */
 .carousel-item {
   height: 65vh;
@@ -46,8 +62,6 @@ section {
 .carousel-caption {
   padding-bottom: 8%;
 }
-
-/* Form Styles */
 
 /* Product Grid Styles */
 .product-grid,
