@@ -21,9 +21,14 @@
         ✔	a full-width slider at the top
         ✔	a minimum of 2 rows of products, minimum of 3 products per row. No table is allowed for the display of your products
         ✔	each product block must display a picture with the title, price, and button to "View"
-        •	when the "view" button is pressed, you will display the product information (larger picture, grid of small pictures, title,
-          description, price, add to cart button) in a modal.
-        •	When an image in the grid is selected, your site will use fancybox (or some similar plugin) to display the image.
+        •	when the "view" button is pressed, you will display the following product information in a modal:  Currently using fancybox instead of modal
+            ✔ Larger picture
+            • Grid of small pictures
+            ✔ Title
+            ✔ Description
+            ✔ Price
+            ✔ Add to cart button
+        ✔	When an image in the grid is selected, your site will use fancybox (or some similar plugin) to display the image.
     •	Contact page must contain a form with:
         • Email address
         • Subject
@@ -143,7 +148,7 @@
           <div class="product-grid">
             <div class="product-image">
               <a data-fancybox="gallery" href="images/md-dnd-phb.jpg">
-                <img class="pic-1" src="images/sm-dnd-phb.jpg" alt="D&D 5E Player's Handbook">
+                <img class="img-fluid" src="images/sm-dnd-phb.jpg" alt="D&D 5E Player's Handbook">
               </a>
             </div>
             <div class="product-content">
@@ -151,11 +156,13 @@
               <div class="price">
                 $49.95
               </div>
-              <a class="btn btn-secondary" data-fancybox="cards" href="#dnd-phb" role="button">VIEW</a>
+              <a class="dnd btn btn-secondary" href="#dnd-phb" role="button" data-toggle="modal"
+                data-target="#myModal">VIEW</a>
             </div>
 
             <!-- Product Details -->
-            <div id="dnd-phb" class="card col-md-6 col-sm-6 w-50 h-75 bg-light" style="display: none;">
+            <div id="dnd-phb" title="D&D 5E Player's Handbook" class="book card col-md-6 col-sm-6 w-50 h-75 bg-light"
+              style="display: none;">
               <img class="card-img-top float-left img-fluid" src="images/md-dnd-phb.jpg" alt="D&D 5E Player's Handbook">
               <div class="card-body">
                 <h5 class="card-title">D&D 5E Player's Handbook</h5>
@@ -442,9 +449,11 @@
                     settlements and adventure locations, a unique theme to customize characters from that world, and
                     more.</li>
                   <li>New playable alien races, from undead Eoxians to Castrovellian plant-people.</li>
-                  <li>New starships, from the living vessels of the Xenowardens to sinister Hellknight dreadnoughts.</li>
+                  <li>New starships, from the living vessels of the Xenowardens to sinister Hellknight dreadnoughts.
+                  </li>
                   <li>A codex of themed NPC stat blocks to help Game Masters create vivid encounters.</li>
-                  <li>New archetypes for every class, including the Star Knight, Skyfire Centurion, and Divine Champion.</li>
+                  <li>New archetypes for every class, including the Star Knight, Skyfire Centurion, and Divine Champion.
+                  </li>
                   <li>Tons of new weapons, armors, spells, feats, magic items, technological gadgets, and more to help
                     outfit your adventurers.</li>
                 </ul>
@@ -482,14 +491,23 @@
                 alt="Starfinder Alien Archive">
               <div class="card-body">
                 <h5 class="card-title">Starfinder Alien Archive</h5>
-                <p class="card-text">Strange aliens both friendly and fearsome fill this tome of creatures designed for use with the Starfinder Roleplaying Game! From the gravity-manipulating frujais and planet-killing novaspawn to space goblins and security robots, the creatures in this codex will challenge adventurers no matter what strange worlds they're exploring. What's more, player rules for a host of creatures let players not just fight aliens, but be them!</p>
-		            <p>Inside Starfinder Alien Archive, you'll find the following:</p>
+                <p class="card-text">Strange aliens both friendly and fearsome fill this tome of creatures designed for
+                  use with the Starfinder Roleplaying Game! From the gravity-manipulating frujais and planet-killing
+                  novaspawn to space goblins and security robots, the creatures in this codex will challenge adventurers
+                  no matter what strange worlds they're exploring. What's more, player rules for a host of creatures let
+                  players not just fight aliens, but be them!</p>
+                <p>Inside Starfinder Alien Archive, you'll find the following:</p>
                 <ul>
-                  <li>Over 80 bizarre life-forms both classic and new, from the reptilian ikeshtis and energy-bodied hallajins to robotic anacites and supernatural entities from beyond the realms of mortals.</li>
-                  <li>Over 20 races with full player rules, letting you play everything from a winged dragonkin to a hyperevolved floating brain.</li>
-                  <li>New alien technology to help give your character an edge, including weapons, armor, magic items, and more.</li>
-                  <li>A robust NPC-creation system to let Game Masters build any aliens or creatures they can imagine.</li>
-                  <li>New rules for magical monster summoning, quick templates to modify creatures on the fly, and more!</li>
+                  <li>Over 80 bizarre life-forms both classic and new, from the reptilian ikeshtis and energy-bodied
+                    hallajins to robotic anacites and supernatural entities from beyond the realms of mortals.</li>
+                  <li>Over 20 races with full player rules, letting you play everything from a winged dragonkin to a
+                    hyperevolved floating brain.</li>
+                  <li>New alien technology to help give your character an edge, including weapons, armor, magic items,
+                    and more.</li>
+                  <li>A robust NPC-creation system to let Game Masters build any aliens or creatures they can imagine.
+                  </li>
+                  <li>New rules for magical monster summoning, quick templates to modify creatures on the fly, and more!
+                  </li>
                 </ul>
                 <p><b><i>Close Encounters</i></b></p>
               </div>
@@ -613,6 +631,27 @@
     </div> <!-- /.container -->
   </footer>
 
+  <!-- Bootstrap Modal -->
+  <div class="modal fade modal-product" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="btn btn-danger close" data-dismiss="modal" aria-label="Close"></button>
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
@@ -621,6 +660,20 @@
   <script src="js/scrolling-nav.js"></script>
   <script src="js/jquery.easing.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+  <!-- Custom JS -->
+  <script type="text/javascript">
+    // show card in modal when clicking View button
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var recipient = button.data('whatever') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this)
+      modal.find('.modal-title').text('New message to ' + recipient)
+      modal.find('.modal-body input').val(recipient)
+    })
+  </script>
 
 </body>
 
