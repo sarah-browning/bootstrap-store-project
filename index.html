@@ -5,39 +5,6 @@
 
   <meta charset="utf-8">
 
-  <!--
-  Create an interactive, online store that conforms to the following:
- 
-  Design considerations:
-    ✔	Single-page web site (only 1 html file allowed)
-    ✔	Site must be responsive (requires bootstrap)
-    •	Research as to what informs your design (reference sites with explanation)
-    •	Wireframe for your layout(s)
-    ✔	Site design must include logo, responsive menu
- 
-  Functional considerations:
-    ✔	The site must contain the following pages:
-        ✔ Home/Products
-        ✔ About
-        ✔ Contact
-    •	When viewing pages, you must manage your divs through show/hide or swap in/swap out, not through use of external html pages
-    ✔	Home page must have:
-        ✔	a full-width slider at the top
-        ✔	a minimum of 2 rows of products, minimum of 3 products per row. No table is allowed for the display of your products
-        ✔	each product block must display a picture with the title, price, and button to "View"
-        ✔	when the "view" button is pressed, you will display the product information (larger picture, grid of small pictures, title,
-          description, price, add to cart button) in a modal.
-        ✔	When an image in the grid is selected, your site will use fancybox (or some similar plugin) to display the image.
-    •	Contact page must contain a form with:
-        ✔Email address
-        ✔ Subject
-        ✔ Message
-        ✔ Submit button
-        • When the submit button is pressed, your site will use AJAX to send to a script that will retrieve the email address, subject, and message.
-        • If there are errors in your form (missing fields), you must display an error flag beside the offending field and display the error in a bootstrap alert.
-    •	Use bootstrap classes to style all elements (when appropriate) for a modern look and feel
- -->
-
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Dice, Dragons, and Documents - An RPG bookstore created as a Bootstrap project">
   <meta name="author" content="Sarah Browning">
@@ -46,6 +13,11 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.ico" />
+
+  <!-- Google Font Imports -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+  </style>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -63,7 +35,7 @@
 <body id="page-top">
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-justified" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="images/ddd_logo-sm.png"
           alt="logo"></a>
@@ -100,25 +72,25 @@
         <!-- Slide One -->
         <div class="carousel-item active" style="background-image: url('images/dnd-hero.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h2 class="display-4">Tasha's Cauldron is bubbling over!</h2>
-            <p class="lead">With new character options and alternate rules, this sourcebook is bound to cause a stir!
-            </p>
+            <h1 class="display-4">Tasha's Cauldron is bubbling over!</h1>
+            <h2 class="lead">With new character options and alternate rules, this sourcebook is bound to cause a stir!
+            </h2>
           </div>
         </div>
 
         <!-- Slide Two -->
         <div class="carousel-item" style="background-image: url('images/starfinder-hero.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h2 class="display-4">Starfinder is here!</h2>
-            <p class="lead">Now you can adventure throughout the stars.</p>
+            <h1 class="display-4">Starfinder is here!</h1>
+            <h2 class="lead">Now you can adventure throughout the stars.</h2>
           </div>
         </div>
 
         <!-- Slide Three -->
         <div class="carousel-item" style="background-image: url('images/cthulhu-hero.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h2 class="display-4">Cthulhu is coming!</h2>
-            <p class="lead">A new Call of Cthulhu adventure module releases April 28th!</p>
+            <h1 class="display-4">Cthulhu is coming!</h1>
+            <h2 class="lead">A new Call of Cthulhu adventure module releases April 28th!</h2>
           </div>
         </div>
       </div>
@@ -138,7 +110,7 @@
   <!-- Product Page -->
   <section id="products" class="bg-light">
     <div class="container products">
-      <h3 class="h3">Best Sellers</h3>
+      <h3 class="h3 product-tab">Best Sellers</h3>
 
       <!--Grid Row-->
       <div class="row">
@@ -152,12 +124,13 @@
                 <img class="pic-1" src="images/sm-dnd-phb.jpg" alt="D&D 5E Player's Handbook">
               </a>
             </div>
+            <div class="w-100"></div>
             <div class="product-content">
               <h3 class="title">D&D 5E Player's Handbook</h3>
               <div class="price">
                 $49.95
               </div>
-              <a class="btn btn-secondary" data-fancybox="cards" href="#dnd-phb" role="button">VIEW</a>
+              <a class="btn btn-primary" data-fancybox="cards" href="#dnd-phb" role="button">VIEW</a>
             </div>
 
             <!-- Product Details -->
@@ -196,12 +169,13 @@
                 <img class="pic-1" src="images/sm-dnd-xanathar.jpg" alt="D&D 5E Xanathar's Guide to Everything">
               </a>
             </div>
+            <div class="w-100"></div>
             <div class="product-content">
               <h3 class="title">D&D 5E Xanathar's Guide to Everything</h3>
               <div class="price">
                 $49.95
               </div>
-              <a class="btn btn-secondary" data-fancybox="cards" href="#dnd-xanathar" role="button">VIEW</a>
+              <a class="btn btn-primary" data-fancybox="cards" href="#dnd-xanathar" role="button">VIEW</a>
             </div>
 
             <!-- Product Details -->
@@ -252,12 +226,13 @@
                 <img class="pic-1" src="images/sm-dnd-tashas.jpg" alt="D&D 5E Tasha's Cauldron of Everything">
               </a>
             </div>
+            <div class="w-100"></div>
             <div class="product-content">
               <h3 class="title">D&D 5E Tasha's Cauldron of Everything</h3>
               <div class="price">
                 $49.95
               </div>
-              <a class="btn btn-secondary" data-fancybox="cards" href="#dnd-tasha" role="button">VIEW</a>
+              <a class="btn btn-primary" data-fancybox="cards" href="#dnd-tasha" role="button">VIEW</a>
             </div>
 
             <!-- Product Details -->
@@ -320,12 +295,13 @@
                 <img class="pic-1" src="images/sm-coc-investigator.jpg" alt="Call of Cthulhu 7E Investigator Handbook">
               </a>
             </div>
+            <div class="w-100"></div>
             <div class="product-content">
               <h3 class="title">Call of Cthulhu 7E Investigator Handbook</h3>
               <div class="price">
                 $59.95
               </div>
-              <a class="btn btn-secondary" data-fancybox="cards" href="#coc-investigator" role="button">VIEW</a>
+              <a class="btn btn-primary" data-fancybox="cards" href="#coc-investigator" role="button">VIEW</a>
             </div>
 
             <!-- Product Details -->
@@ -373,17 +349,18 @@
                 <img class="pic-1" src="images/sm-starfinder-core.jpg" alt="Starfinder Core Rulebook">
               </a>
             </div>
+            <div class="w-100"></div>
             <div class="product-content">
               <h3 class="title">Starfinder Core Rulebook</h3>
               <div class="price">
                 $59.95
               </div>
-              <a class="btn btn-secondary" data-fancybox="cards" href="#starfinder-core" role="button">VIEW</a>
+              <a class="btn btn-primary" data-fancybox="cards" href="#starfinder-core" role="button">VIEW</a>
             </div>
 
             <!-- Product Details -->
             <!--Grid Column-->
-            <div id="starfinder-core" class="card col-md-6 col-sm-6 w-50 h-75 bg-light" style="display: none;">
+            <div id="starfinder-core" class="card col-md-6 col-sm-6 w-50 h-75 bg-light p-4" style="display: none;">
               <img class="card-img-top float-left img-fluid" src="images/md-starfinder-core.jpg"
                 alt="Starfinder Core Rulebook">
               <div class="card-body">
@@ -438,12 +415,13 @@
                 <img class="pic-1" src="images/sm-starfinder-pactworlds.jpg" alt="Starfinder Pact Worlds">
               </a>
             </div>
+            <div class="w-100"></div>
             <div class="product-content">
               <h3 class="title">Starfinder Pact Worlds</h3>
               <div class="price">
                 $44.95
               </div>
-              <a class="btn btn-secondary" data-fancybox="cards" href="#starfinder-pact" role="button">VIEW</a>
+              <a class="btn btn-primary" data-fancybox="cards" href="#starfinder-pact" role="button">VIEW</a>
             </div>
 
             <!-- Product Details -->
@@ -498,12 +476,13 @@
                 <img class="pic-1" src="images/sm-starfinder-alienarchive.jpg" alt="Starfinder Alien Archive">
               </a>
             </div>
+            <div class="w-100"></div>
             <div class="product-content">
               <h3 class="title">Starfinder Alien Archive</h3>
               <div class="price">
                 $39.95
               </div>
-              <a class="btn btn-secondary" data-fancybox="cards" href="#starfinder-alien1" role="button">VIEW</a>
+              <a class="btn btn-primary" data-fancybox="cards" href="#starfinder-alien1" role="button">VIEW</a>
             </div>
 
             <!-- Product Details -->
@@ -554,12 +533,13 @@
                 <img class="pic-1" src="images/sm-coc-keeper.jpg" alt="Call of Cthulhu 7E Keeper Rulebook">
               </a>
             </div>
+
             <div class="product-content">
               <h3 class="title">Call of Cthulhu 7E Keeper Rulebook</h3>
               <div class="price">
                 $69.95
               </div>
-              <a class="btn btn-secondary" data-fancybox="cards" href="#coc-keeper" role="button">VIEW</a>
+              <a class="btn btn-primary" data-fancybox="cards" href="#coc-keeper" role="button">VIEW</a>
             </div>
 
             <!-- Product Details -->
@@ -644,8 +624,40 @@
 
   <!-- Contact Page -->
   <section id="contact" class="mb-4 bg-light">
+    <div class="alert alert-danger alert-dismissible nameAlert collapse" role="alert">
+      <p><strong>Error!</strong> The name field cannot be empty. Please enter your name and try again.</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="alert alert-danger alert-dismissible emailAlert collapse" role="alert">
+      <p><strong>Error!</strong> The email field cannot be empty Please enter a valid email and try again.</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="alert alert-danger alert-dismissible messageAlert collapse" role="alert">
+      <p><strong>Error!</strong> The message box cannot be empty. Please enter a message and try again.</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="alert alert-danger alert-dismissible subjectAlert collapse" role="alert">
+      <p><strong>Error!</strong> The subject line cannot be empty. Please enter a subject line and try again.</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="alert alert-success alert-dismissible collapse" role="alert">
+      <p><strong>Success!</strong> Your information has been sent and our scribes will get back to you as soon as they
+        can!</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
     <div class="container contact">
-      <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+      <h1 class="h1-responsive font-weight-bold text-center my-4">Contact Us</h1>
       <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please don't hesitate to reach out to
         one of our scribes by filling out the form below. We should be able to prepare and cast a Sending spell within
         48 hours, we just may need a long rest first.</p>
@@ -654,7 +666,7 @@
       <div class="row">
 
         <!-- Grid Column -->
-        <div class="col-md-9 mb-md-0 mb-5">
+        <div class="col-md-6 mb-md-0 mb-5">
           <form id="contact-form" name="contact-form" action="sendform.php" method="POST">
 
             <!-- Grid Row -->
@@ -663,16 +675,16 @@
               <!-- Grid Column -->
               <div class="col-md-6">
                 <div class="md-form mb-0">
-                  <input type="text" id="name" name="name" class="form-control">
                   <label for="name" class="">Your name</label>
+                  <input type="text" id="name" name="name" class="form-control">
                 </div>
               </div>
 
               <!-- Grid Column -->
               <div class="col-md-6">
                 <div class="md-form mb-0">
-                  <input type="text" id="email" name="email" class="form-control">
                   <label for="email" class="">Your email</label>
+                  <input type="text" id="email" name="email" class="form-control">
                 </div>
               </div>
             </div>
@@ -681,8 +693,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="md-form mb-0">
-                  <input type="text" id="subject" name="subject" class="form-control">
                   <label for="subject" class="">Subject</label>
+                  <input type="text" id="subject" name="subject" class="form-control">
                 </div>
               </div>
             </div>
@@ -692,34 +704,33 @@
 
               <!-- Grid Column -->
               <div class="col-md-12">
-
                 <div class="md-form">
+                  <label for="message">Your message</label>
                   <textarea type="text" id="message" name="message" rows="2"
                     class="form-control md-textarea"></textarea>
-                  <label for="message">Your message</label>
                 </div>
-
               </div>
             </div>
           </form>
 
           <div class="text-center text-md-left">
-            <a class="btn btn-secondary" onclick="validateForm();">Submit</a>
+            <br /><button type="submit" class="btn btn-primary" onclick="getFormData()">Submit</button>
           </div>
-          <div class="status"></div>
+          <div class="status" id="status"></div>
         </div>
 
         <!-- Grid Column -->
-        <div class="col-md-3 text-center">
+        <div class="contact-info col-md-3 ml-auto text-right">
           <ul class="list-unstyled mb-0">
-            <li><i class="fas fa-address-book"></i>
-              <p>Dice Dragons & Documents<br />New Glasgow, NS, A5A 5A5, Canada</p>
+            <li>
+              <p><i class="fa-li fas fa-address-book"></i> &nbsp;Dice Dragons & Documents<br />New Glasgow, NS, A5A 5A5,
+                Canada</p>
             </li>
-            <li><i class="fas fa-mobile-alt"></i>
-              <p>+1 (902) 555-5555</p>
+            <li>
+              <p><i class="fa-li fas fa-mobile-alt"></i> &nbsp;+1 (902) 555-5555</p>
             </li>
-            <li><i class="fas fa-envelope-open-text"></i>
-              <p>scribes@ddd.ca</p>
+            <li>
+              <p><i class="fa-li fas fa-envelope-open-text"></i> &nbsp;scribes@dicedragonsdocs.ca</p>
             </li>
           </ul>
         </div>
@@ -735,8 +746,8 @@
     </div> <!-- /.container -->
   </footer>
 
-  <!-- Failed to figure out how to get card data to show up in modal and didn't have time to redo cards which were already
-       working with Fancybox elements by the time I realized instructions specified to use a modal -->
+  <!-- Didn't realize that product details were supposed to be in a modal and also realized too late that bootstrap cards are not responsive.
+       Had alrady completed product details as cards and used Fancybox to setup.  Didn't have time to go back and redo it all to put in modal. -->
 
   <!-- Bootstrap Modal -->
   <!-- <div class="modal fade modal-product" id="myModal" tabindex="-1" role="dialog">
@@ -811,40 +822,75 @@
           $("#contact").hide(),
           $("#products").show()
       });
-
     });
   </script>
 
   <!-- Form Validation -->
   <script type="text/javascript">
-    function validateForm() {
-      var name = document.getElementById('name').value;
+    function getFormData() {
+      var name = $("#name").val();
+      var email = $("#email").val();
+      var message = $("#message").val();
+      var subject = $("#subject").val();
+
+      //define a flag to track errors (error code system)
+      var errors = 0;
+
+      //if statement to check each field for validity
       if (name == "") {
-        document.querySelector('.status').innerHTML = "Name cannot be empty";
-        return false;
-      }
-      var email = document.getElementById('email').value;
-      if (email == "") {
-        document.querySelector('.status').innerHTML = "Email cannot be empty";
-        return false;
+        errors = 1;
+        $("#nameError").addClass('spanError'),
+          $(".nameAlert").show();
       } else {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!re.test(email)) {
-          document.querySelector('.status').innerHTML = "Email format is invalid";
-          return false;
-        }
+        $("fieldError1").removeClass('spanError');
+        $(".alert-success").show();
       }
-      var subject = document.getElementById('subject').value;
-      if (subject == "") {
-        document.querySelector('.status').innerHTML = "Subject cannot be empty";
-        return false;
+
+      if (email == "") {
+        errors = 2;
+        $("#messageError").addClass('spanError');
+        $(".emailAlert").show();
+      } else {
+        $("fieldError3").removeClass('spanError');
+        $(".alert-success").show();
       }
-      var message = document.getElementById('message').value;
+
       if (message == "") {
-        document.querySelector('.status').innerHTML = "Message cannot be empty";
-        return false;
+        errors = 3;
+        $("#messageError").addClass('spanError');
+        $(".messageAlert").show();
+      } else {
+        $("fieldError3").removeClass('spanError');
+        $(".alert-success").show();
       }
-      document.querySelector('.status').innerHTML = "Sending...";
+
+      if (subject == "") {
+        errors = 4;
+        $("#subjectError").addClass('spanError');
+        $(".subjectAlert").show();
+      } else {
+        $("fieldError3").removeClass('spanError');
+        $(".alert-success").show();
+      }
+
+      if (errors == 0) {
+        //send data to server
+
+        var dataForServer = $('#form1').serialize();
+        //send data to the server via AJAX
+        $.ajax({
+          type: "POST",
+          url: "sendform.php",
+          data: dataForServer,
+          success: function (msg) {
+            $(".alert-success")
+          }
+        });
+
+      } else {
+        ;
+
+      }
     }
   </script>
 
